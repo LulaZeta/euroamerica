@@ -22,6 +22,7 @@ const Home = () => {
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Dni</th>
             <th>Patente</th>
             <th>Cuit</th>
             <th>Origen</th>
@@ -39,6 +40,17 @@ const Home = () => {
               <td>{el.cuit}</td>
               <td>{el.origen}</td>
               <td>{el.destino}</td>
+              {/* <td>
+              <button className="button" onClick={() => openModal(product)}>
+                    Edit
+                  </button>{' '}
+                  <button
+                    className="button"
+                    onClick={() => deleteHandler(product)}
+                  >
+                    Delete
+                  </button>
+                </td> */}
             </tr>
           ))}
         </tbody>

@@ -1,8 +1,15 @@
-import { POST_TRAVEL, GET_ALL_TRAVELS } from '../actions';
+import {
+  POST_TRAVEL,
+  GET_ALL_TRAVELS,
+  POST_CLIENT,
+  DELETE_TRAVEL,
+} from '../actions';
 
 const initialState = {
   allTravels: [],
   newTravel: {},
+  newClient: {},
+  travel: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -15,6 +22,15 @@ export default function reducer(state = initialState, action) {
     case POST_TRAVEL:
       return {
         ...state,
+      };
+    case POST_CLIENT:
+      return {
+        ...state,
+      };
+    case DELETE_TRAVEL:
+      return {
+        ...state,
+        travel: action.payload,
       };
     default:
       return state;
