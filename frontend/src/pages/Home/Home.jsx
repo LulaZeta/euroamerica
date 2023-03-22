@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllTravels } from '../../redux/actions';
+import { getAllTravels, deleteTravel } from '../../redux/actions';
 
 const Home = () => {
   const travels = useSelector((state) => state.allTravels);
+  const borrarTravel = useSelector((state) => state.travel);
   const dispatch = useDispatch();
 
   useEffect(
     (e) => {
       dispatch(getAllTravels());
     },
-    [dispatch]
+    [dispatch, borrarTravel]
   );
+
+  function handleDelete(el) {
+    dispatch(deleteTravel(el.id));
+    alert('la actividad fue borrada');
+  }
 
   return (
     <div>
@@ -40,17 +46,14 @@ const Home = () => {
               <td>{el.cuit}</td>
               <td>{el.origen}</td>
               <td>{el.destino}</td>
-              {/* <td>
-              <button className="button" onClick={() => openModal(product)}>
+              <td>
+                {/* <button className="button" onClick={() => openModal(product)}>
                     Edit
-                  </button>{' '}
-                  <button
-                    className="button"
-                    onClick={() => deleteHandler(product)}
-                  >
-                    Delete
-                  </button>
-                </td> */}
+                  </button>{' '} */}
+                <button className="button" onClick={() => handleDelete(el)}>
+                  BORRAR
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
