@@ -11,22 +11,13 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 const getDbClients = async () => {
-  return await Client
-    .findAll
-    //     {
-    //     include: {
-    //       model: Product,
-    //       attributes: [cuit],
-    //       through: {
-    //         attributes: [],
-    //       },
-    //     },
-    //   }
-    ();
+  return await Client.findAll();
 };
 
 const getDbProducts = async () => {
-  return await Product.findAll();
+  return await Product.findAll({
+    include: Client,
+  });
 };
 
 router.post('/client/newclient', async (req, res, next) => {
@@ -53,14 +44,30 @@ router.post('/client/newclient', async (req, res, next) => {
   }
 });
 
-//  -----*** GET CLIENT ***------
-//tengo que enlazar los productos(VIAJES)de los clientes
+//  -----*** GET CLIENTS ***------
 
 router.get('/clients', async (req, res, next) => {
   const { client } = req.body;
   try {
-    let clients = await getDbClients();
-    res.status(200).json(clients);
+    let clients;
+    if (client) {
+      clients = await Client.findAll({
+        where: {
+          client: client,
+        },
+        include: Product,
+      });
+      client.length
+        ? res.status(201).send(clients)
+        : res.status(404).send('No se encontro cliente');
+    } else {
+      clients = await Client.findAll({
+        include: Product,
+      });
+      clients.length
+        ? res.status(200).send(clients)
+        : res.status(400).send('No existen clientes');
+    }
   } catch (error) {
     next(error);
   }
@@ -172,4 +179,24 @@ router.get('/travels', async (req, res, next) => {
     next(error);
   }
 });
+
+//-------travel by id----
+router.get('/travels/:id', async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    let detailTravel = await Product.findByPk(id, {
+      include: {
+        model: Client,
+        required: false,
+        attributes: ['cuit', 'client'],
+      },
+    });
+    detailTravel
+      ? res.status(200).send(detailTravel)
+      : res.status(404).send('no se encuentra');
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
