@@ -2,6 +2,7 @@ import { POST_TRAVEL, GET_ALL_TRAVELS } from '../actions';
 
 const initialState = {
   allTravels: [],
+  newTravel: {},
 };
 
 export default function reducer(state = initialState, action) {

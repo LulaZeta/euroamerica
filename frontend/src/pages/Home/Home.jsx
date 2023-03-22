@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Travel from '../../components/Travel/Travel';
 import { getAllTravels } from '../../redux/actions';
 
 const Home = () => {
@@ -16,20 +15,34 @@ const Home = () => {
 
   return (
     <div>
-      {travels?.map((el) => {
-        return (
-          <Travel
-            id={el.id}
-            name={el.name}
-            lastname={el.lastname}
-            dni={el.dni}
-            patente={el.patente}
-            cuit={el.cuit}
-            origen={el.origen}
-            destino={el.destino}
-          />
-        );
-      })}
+      <h3>VIAJES</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Patente</th>
+            <th>Cuit</th>
+            <th>Origen</th>
+            <th>Destino</th>
+          </tr>
+        </thead>
+        <tbody>
+          {travels?.map((el) => (
+            <tr key={el.id}>
+              <td>{el.id}</td>
+              <td>{el.name}</td>
+              <td>{el.lastname}</td>
+              <td>{el.dni}</td>
+              <td>{el.patente}</td>
+              <td>{el.cuit}</td>
+              <td>{el.origen}</td>
+              <td>{el.destino}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
