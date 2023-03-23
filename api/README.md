@@ -6,8 +6,10 @@
    "client": "JuanCarlos",
    "cuit": "20-25896345-6"
    }
+   RETORNA:
+   Cliente JuanCarlos registrado con éxito
 
-2.GET_ALL_CLIENT : http://localhost:3001/clients
+2. GET_ALL_CLIENT : http://localhost:3001/clients
 
 [
 {
@@ -95,16 +97,32 @@ RETORNA:
 4.  POST_TRAVEL : http://localhost:3001/travel
     Body:
     {
-    "name": "Ramiro",
-    "lastname": "Garnie",
-    "dni": 59632747,
+    "name": "Ricardo",
+    "lastname": "Garcia",
+    "dni": 59632748,
     "patente":"AB 123 58" ,
     "cuit": "20-25896345-6",
     "origen": "inicio",
     "destino": "final"
     }
 
-    5. GET_ALL_TRAVELS: http://localhost:3001/travels
+        RETORNA:
+        {
+        "id": 3,
+        "name": "Ricardo",
+        "lastname": "Garcia",
+        "dni": 59632748,
+        "patente": "AB 123 58",
+        "cuit": "20-25896345-6",
+        "origen": "inicio",
+        "destino": "final",
+        "updatedAt": "2023-03-23T12:20:01.460Z",
+        "createdAt": "2023-03-23T12:20:01.315Z",
+        "clientId": 1
+
+    }
+
+5.  GET_ALL_TRAVELS: http://localhost:3001/travels
 
     [
     {
@@ -149,7 +167,7 @@ RETORNA:
     }
     ]
 
-5.  GET_TRAVEL_By_ID: http://localhost:3001/travels/1
+6.  GET_TRAVEL_By_ID: http://localhost:3001/travels/1
     {
     "id": 1,
     "name": "Carmelo",
@@ -168,7 +186,7 @@ RETORNA:
     }
     }
 
-6.  PUT_TRAVEL :http://localhost:3001/travel/1
+7.  PUT_TRAVEL :http://localhost:3001/travel/1
     Por Body:
     {
     "name": "Jorge",
@@ -180,9 +198,15 @@ RETORNA:
     "destino": "Siempre se puede mejorar la mejora"
     }
 
-        8. DELETE TRAVEL: http://localhost:3001/travel/3
-        Retorna:
-         {
-        "delete": true
+        RETORNA:
+        {
+        "modificado": true
+
+    }
+
+8.  DELETE TRAVEL: http://localhost:3001/travel/3
+    Retorna:
+    {
+    "delete": true
 
     }
