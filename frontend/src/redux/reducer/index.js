@@ -4,6 +4,7 @@ import {
   POST_CLIENT,
   DELETE_TRAVEL,
   UPDATE_TRAVEL,
+  GET_ALL_CLIENTS,
 } from '../actions';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   newTravel: {},
   newClient: {},
   travel: {},
+  allClients: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -27,6 +29,11 @@ export default function reducer(state = initialState, action) {
     case POST_CLIENT:
       return {
         ...state,
+      };
+    case GET_ALL_CLIENTS:
+      return {
+        ...state,
+        allClients: action.payload,
       };
     case DELETE_TRAVEL:
       return {

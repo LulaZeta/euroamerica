@@ -4,6 +4,7 @@ export const POST_CLIENT = 'POST_CLIENT';
 export const GET_ALL_TRAVELS = 'GET_ALL_TRAVELS';
 export const DELETE_TRAVEL = 'DELETE_TRAVEL';
 export const UPDATE_TRAVEL = 'UPDATE_TRAVEL';
+export const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS';
 
 const postClient = (payload) => async (dispach) => {
   try {
@@ -11,6 +12,17 @@ const postClient = (payload) => async (dispach) => {
     dispach({ type: POST_CLIENT, payload: data.data });
   } catch (error) {
     console.log(error);
+  }
+};
+const getAllClients = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`/clients`);
+    return dispatch({
+      type: GET_ALL_CLIENTS,
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log(err.response.data);
   }
 };
 
@@ -63,4 +75,11 @@ const updateTravel = (payload) => async (dispatch) => {
   }
 };
 
-export { postTravel, postClient, getAllTravels, deleteTravel, updateTravel };
+export {
+  postTravel,
+  postClient,
+  getAllTravels,
+  deleteTravel,
+  updateTravel,
+  getAllClients,
+};

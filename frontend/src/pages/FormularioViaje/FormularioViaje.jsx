@@ -21,25 +21,6 @@ function FormularioViaje() {
     destino: '',
   });
 
-  // const Validator = (name, value) => {
-  //   if (name === 'name' && (typeof value === 'string' || value === '')) {
-  //     return value;
-  //   }
-  //   if (name === 'lastname' && typeof value === 'string') {
-  //     return value;
-  //   }
-  //   if (name === 'dni' && typeof value === 'number') {
-  //     return value;
-  //   }
-  //   if (name === 'name' && typeof value === 'string') {
-  //     return value;
-  //   }
-  //   if (name === 'name' && typeof value === 'string') {
-  //     return value;
-  //   }
-  //   return null;
-  // };
-
   useEffect(() => {
     const newData = allTravels.find((t) => t.id === Number(id));
     if (newData) {
@@ -48,10 +29,6 @@ function FormularioViaje() {
   }, [allTravels, id]);
 
   const handleOnChange = (e) => {
-    // if (Validator(e.target.name, e.target.value) === null) {
-    //   alert('valor inválido');
-    //   return;
-    // }
     setData((d) => ({
       ...d,
       [e.target.name]: e.target.value,

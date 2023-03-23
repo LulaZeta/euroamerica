@@ -1,3 +1,18 @@
+#### Tecnologías utilizadas:
+
+- [ ] React
+- [ ] Redux
+- [ ] Express
+- [ ] Sequelize - Postgres
+
+<p align="center">
+  <img src="./img/Capture01.JPG" width= 600 >
+   <img src="./img/Capture02.JPG" width= 600 >
+  <img src="./img/Capture03.JPG" width= 600 >
+   <img src="./img/Capture04.JPG" width= 600 >
+ 
+  </p>
+
 Ejercicio entrevista técnica
 Departamento: Sistemas
 Puesto: Desarrollador
