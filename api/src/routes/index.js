@@ -2,14 +2,14 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-const { Product, Client } = require('../db');
+const { Travel, Client } = require('../db');
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-const getDbProducts = async () => {
-  return await Product.findAll({
+const getDbTravels = async () => {
+  return await Travel.findAll({
     include: Client,
   });
 };
@@ -47,14 +47,14 @@ router.get('/clients', async (req, res, next) => {
         where: {
           client: client,
         },
-        include: Product,
+        include: Travel,
       });
       return client.length
         ? res.status(201).send(clients)
         : res.status(404).send('No se encontro cliente');
     } else {
       clients = await Client.findAll({
-        include: Product,
+        include: Travel,
       });
       return clients.length
         ? res.status(200).send(clients)
@@ -83,7 +83,7 @@ router.post('/travel', async (req, res, next) => {
       return res.status(401).send({ info: 'data incompleta' });
     }
 
-    const newTravel = await Product.create({
+    const newTravel = await Travel.create({
       name,
       lastname,
       dni,
@@ -116,7 +116,7 @@ router.post('/travel', async (req, res, next) => {
 router.delete('/travel/:id', async (req, res, next) => {
   const id = req.params.id;
   try {
-    await Product.destroy({
+    await Travel.destroy({
       where: {
         id: id,
       },
@@ -132,7 +132,7 @@ router.put('/travel/:id', async (req, res, next) => {
   const id = req.params.id;
   const travel = req.body; //lo q me pasan por body de las propiedades activities
   try {
-    await Product.update(travel, {
+    await Travel.update(travel, {
       where: {
         id: id,
       },
@@ -147,7 +147,7 @@ router.put('/travel/:id', async (req, res, next) => {
 
 router.get('/travels', async (req, res, next) => {
   try {
-    let travels = await getDbProducts();
+    let travels = await getDbTravels();
     return res.status(200).json(travels);
   } catch (error) {
     next(error);
@@ -158,7 +158,7 @@ router.get('/travels', async (req, res, next) => {
 router.get('/travels/:id', async (req, res, next) => {
   const id = req.params.id;
   try {
-    let detailTravel = await Product.findByPk(id, {
+    let detailTravel = await Travel.findByPk(id, {
       include: {
         model: Client,
         required: false,
