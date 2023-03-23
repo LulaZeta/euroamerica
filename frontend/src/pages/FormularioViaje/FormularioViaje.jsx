@@ -97,84 +97,88 @@ function FormularioViaje() {
       {loading ? (
         <div>loading ....</div>
       ) : (
-        <form onSubmit={submitHandler}>
-          <ul className="form-container">
-            <li>{id ? <h2>Editar Viaje</h2> : <h2>Alta Viaje</h2>}</li>
-            <li>
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={data.name}
-                id="name"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="lastname">Apellido</label>
-              <input
-                type="text"
-                name="lastname"
-                value={data.lastname}
-                id="lastname"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="dni">DNI</label>
-              <input
-                type="text"
-                name="dni"
-                value={data.dni}
-                id="dni"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="name">Patente</label>
-              <input
-                type="text"
-                name="patente"
-                value={data.patente}
-                id="patente"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="name">Cuit</label>
-              <input
-                type="text"
-                name="cuit"
-                value={data.cuit}
-                id="cuit"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="name">Origen</label>
-              <input
-                type="text"
-                name="origen"
-                value={data.origen}
-                id="origen"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <label htmlFor="name">Destino</label>
-              <input
-                type="text"
-                name="destino"
-                value={data.destino}
-                id="destino"
-                onChange={(e) => handleOnChange(e)}
-              ></input>
-            </li>
-            <li>
-              <button type="submit">{id ? 'EDITAR' : 'ENVIAR'}</button>
-            </li>
-          </ul>
-        </form>
+        <div className="form">
+          <form onSubmit={submitHandler}>
+            <ul className="form-container">
+              <li>{id ? <h2>Editar Viaje</h2> : <h2>Alta Viaje</h2>}</li>
+              <li>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={data.name}
+                  id="name"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="lastname">Apellido</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  value={data.lastname}
+                  id="lastname"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="dni">DNI</label>
+                <input
+                  type="text"
+                  name="dni"
+                  value={data.dni}
+                  id="dni"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="name">Patente</label>
+                <input
+                  type="text"
+                  name="patente"
+                  value={data.patente}
+                  id="patente"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="name">Cuit</label>
+                <input
+                  type="text"
+                  name="cuit"
+                  value={data.cuit}
+                  id="cuit"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="name">Origen</label>
+                <input
+                  type="text"
+                  name="origen"
+                  value={data.origen}
+                  id="origen"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="name">Destino</label>
+                <input
+                  type="text"
+                  name="destino"
+                  value={data.destino}
+                  id="destino"
+                  onChange={(e) => handleOnChange(e)}
+                ></input>
+              </li>
+              <li>
+                <button type="submit" className="button primary">
+                  {id ? 'EDITAR' : 'ENVIAR'}
+                </button>
+              </li>
+            </ul>
+          </form>
+        </div>
       )}
     </div>
   );

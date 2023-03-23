@@ -10,15 +10,20 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <header>
+        <div className="grid-container">
           <Navbar />
-        </header>
-        <Routes>
-          <Route path="/travel" element={<FormularioViaje />} />
-          <Route path="/travel/:id" element={<FormularioViaje />} />
-          <Route path="/newclient" element={<AltaClient />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+
+          <main className="main">
+            <div className="content">
+              <Routes>
+                <Route path="/travel" element={<FormularioViaje />} />
+                <Route path="/travel/:id" element={<FormularioViaje />} />
+                <Route path="/newclient" element={<AltaClient />} />
+                <Route path="/" element={<Home />} />
+              </Routes>
+            </div>
+          </main>
+        </div>
       </BrowserRouter>
     </div>
   );

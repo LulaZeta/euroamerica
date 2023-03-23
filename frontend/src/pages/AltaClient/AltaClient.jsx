@@ -19,7 +19,7 @@ function AltaClient() {
   };
 
   return (
-    <div>
+    <div className="form">
       <form onSubmit={submitHandler}>
         <ul className="form-container">
           <li>
@@ -48,7 +48,9 @@ function AltaClient() {
           </li>
 
           <li>
-            <button type="submit">CREAR</button>
+            <button type="submit" className="button primary">
+              CREAR
+            </button>
           </li>
         </ul>
       </form>
