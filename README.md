@@ -6,7 +6,7 @@
 - [ ] Express
 - [ ] Sequelize - Postgres
 
-[Documentación rutas BackEnd](https://github.com/LulaZeta/euroamerica/api/README.md)
+[Documentación rutas BackEnd](https://github.com/LulaZeta/euroamerica/tree/main/api)
 
 <p align="center">
 
