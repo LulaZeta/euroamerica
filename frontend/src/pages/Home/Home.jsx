@@ -33,6 +33,7 @@ const Home = () => {
               <th>Apellido</th>
               <th>Dni</th>
               <th>Patente</th>
+              <th>Cliente</th>
               <th>Cuit</th>
               <th>Origen</th>
               <th>Destino</th>
@@ -46,6 +47,7 @@ const Home = () => {
                 <td>{el.lastname}</td>
                 <td>{el.dni}</td>
                 <td>{el.patente}</td>
+                <td>{el.client.client}</td>
                 <td>{el.cuit}</td>
                 <td>{el.origen}</td>
                 <td>{el.destino}</td>

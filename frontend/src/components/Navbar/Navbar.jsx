@@ -18,31 +18,6 @@ const Navbar = () => {
         </Link>
       </div>
     </header>
-    // <div className="navbar">
-    //   <div className="Navbar_container">
-    //     <div className="nav"></div>
-    //     <nav>
-    //       <ul className="list">
-    //         <li className="items">
-    //           <a href="/" className="items_a">
-    //             Euroamerica
-    //           </a>
-    //         </li>
-
-    //         <li className="items">
-    //           <a href="/newclient" className="items_a">
-    //             Alta Cliente
-    //           </a>
-    //         </li>
-    //         <li className="items">
-    //           <a href="/travel" className="items_a">
-    //             Alta Viaje
-    //           </a>
-    //         </li>
-    //       </ul>
-    //     </nav>
-    //   </div>
-    // </div>
   );
 };
 
