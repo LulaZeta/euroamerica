@@ -3,8 +3,8 @@ import Home from './pages/Home/Home';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import AltaClient from './pages/AltaClient/AltaClient';
-import AltaViaje from './pages/AltaViaje/AltaViaje';
-import EditarViaje from './pages/EditarViaje/EditarViaje';
+//import AltaViaje from './pages/AltaViaje/AltaViaje';
+import FormularioViaje from './pages/FormularioViaje/FormularioViaje';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
           <Navbar />
         </header>
         <Routes>
-          <Route path="/travel" element={<AltaViaje />} />
-          <Route path="/travel/:id" element={<EditarViaje />} />
+          <Route path="/travel" element={<FormularioViaje />} />
+          <Route path="/travel/:id" element={<FormularioViaje />} />
           <Route path="/newclient" element={<AltaClient />} />
           <Route path="/" element={<Home />} />
         </Routes>
