@@ -25,7 +25,7 @@ function EditarViaje() {
     if (newData) {
       setData((old) => ({ ...old, ...newData }));
     }
-  }, []);
+  }, [allTravels, id]);
 
   const handleOnChange = (e) => {
     setData((d) => ({

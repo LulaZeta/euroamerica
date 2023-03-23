@@ -2,17 +2,11 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-const axios = require('axios');
-
 const { Product, Client } = require('../db');
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-
-const getDbClients = async () => {
-  return await Client.findAll();
-};
 
 const getDbProducts = async () => {
   return await Product.findAll({
@@ -24,21 +18,19 @@ router.post('/client/newclient', async (req, res, next) => {
   const { client, cuit } = req.body;
   try {
     if (!client) {
-      res.status(401).send({ info: 'no clientName' });
-      return;
+      return res.status(401).send({ info: 'no clientName' });
     }
     if (!cuit) {
-      res.status(401).send({ info: 'no cuit' });
-      return;
+      return res.status(401).send({ info: 'no cuit' });
     }
-    const newClient = await Client.findOrCreate({
+    await Client.findOrCreate({
       where: {
         client,
         cuit,
       },
     });
 
-    res.status(200).send(`Cliente ${client} registrado con éxito`);
+    return res.status(200).send(`Cliente ${client} registrado con éxito`);
   } catch (error) {
     next(error);
   }
@@ -57,14 +49,14 @@ router.get('/clients', async (req, res, next) => {
         },
         include: Product,
       });
-      client.length
+      return client.length
         ? res.status(201).send(clients)
         : res.status(404).send('No se encontro cliente');
     } else {
       clients = await Client.findAll({
         include: Product,
       });
-      clients.length
+      return clients.length
         ? res.status(200).send(clients)
         : res.status(400).send('No existen clientes');
     }
@@ -79,33 +71,16 @@ router.get('/clients', async (req, res, next) => {
 router.post('/travel', async (req, res, next) => {
   const { name, lastname, dni, patente, cuit, origen, destino } = req.body;
   try {
-    if (!name) {
-      res.status(401).send({ info: 'nombre del chofer' });
-      return;
-    }
-    if (!lastname) {
-      res.status(401).send({ info: 'apellido del chofer' });
-      return;
-    }
-    if (!dni) {
-      res.status(401).send({ info: 'dni chofer' });
-      return;
-    }
-    if (!patente) {
-      res.status(401).send({ info: 'completar patente' });
-      return;
-    }
-    if (!cuit) {
-      res.status(401).send({ info: 'completar cuit del cliente' });
-      return;
-    }
-    if (!origen) {
-      res.status(401).send({ info: 'De dónde venimos???' });
-      return;
-    }
-    if (!destino) {
-      res.status(401).send({ info: 'A dónde vamos???' });
-      return;
+    if (
+      !name ||
+      !lastname ||
+      !dni ||
+      !patente ||
+      !cuit ||
+      !origen ||
+      !destino
+    ) {
+      return res.status(401).send({ info: 'data incompleta' });
     }
 
     const newTravel = await Product.create({
@@ -117,16 +92,15 @@ router.post('/travel', async (req, res, next) => {
       origen,
       destino,
     });
-    await Client.findAll({
+    return await Client.findAll({
       where: { cuit: cuit },
     })
       .then((el) => {
         // console.log('el:', el[0]);
         newTravel.setClient(el[0]);
+        return res.status(201).send(newTravel);
       })
-      .then(() => {
-        res.status(201).send(newTravel);
-      })
+
       .catch((err) => {
         console.log('err    :', err);
         res.status(404).send({ info: err });
@@ -142,7 +116,7 @@ router.post('/travel', async (req, res, next) => {
 router.delete('/travel/:id', async (req, res, next) => {
   const id = req.params.id;
   try {
-    let travel = await Product.destroy({
+    await Product.destroy({
       where: {
         id: id,
       },
@@ -158,7 +132,7 @@ router.put('/travel/:id', async (req, res, next) => {
   const id = req.params.id;
   const travel = req.body; //lo q me pasan por body de las propiedades activities
   try {
-    let act = await Product.update(travel, {
+    await Product.update(travel, {
       where: {
         id: id,
       },
@@ -174,7 +148,7 @@ router.put('/travel/:id', async (req, res, next) => {
 router.get('/travels', async (req, res, next) => {
   try {
     let travels = await getDbProducts();
-    res.status(200).json(travels);
+    return res.status(200).json(travels);
   } catch (error) {
     next(error);
   }
@@ -191,7 +165,7 @@ router.get('/travels/:id', async (req, res, next) => {
         attributes: ['cuit', 'client'],
       },
     });
-    detailTravel
+    return detailTravel
       ? res.status(200).send(detailTravel)
       : res.status(404).send('no se encuentra');
   } catch (error) {
