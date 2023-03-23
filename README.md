@@ -19,9 +19,11 @@ Alta Viaje
    <img src="./img/Capture02.JPG" width= 600 >
 
 Alta Cliente
+
 <img src="./img/Capture03.JPG" width= 600 >
 
 Editar Viaje
+
 <img src="./img/Capture04.JPG" width= 600 >
 
   </p>
