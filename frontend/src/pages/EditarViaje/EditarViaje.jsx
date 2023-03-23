@@ -26,27 +26,6 @@ function EditarViaje() {
       setData((old) => ({ ...old, ...newData }));
     }
   }, []);
-  //   const [name, setName] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.name || ''
-  //   );
-  //   const [lastname, setLastname] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.lastname || ''
-  //   );
-  //   const [dni, setDni] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.dni || ''
-  //   );
-  //   const [patente, setPatente] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.patente || ''
-  //   );
-  //   const [cuit, setCuit] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.cuit || ''
-  //   );
-  //   const [origen, setOrigen] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.origen || ''
-  //   );
-  //   const [destino, setDestino] = useState(
-  //     allTravels.find((t) => t.id === Number(id))?.destino || ''
-  //   );
 
   const handleOnChange = (e) => {
     setData((d) => ({
