@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { getAllTravels, deleteTravel } from '../../redux/actions';
 
 const Home = () => {
   const travels = useSelector((state) => state.allTravels);
   const borrarTravel = useSelector((state) => state.travel);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(
     (e) => {
@@ -47,9 +49,12 @@ const Home = () => {
               <td>{el.origen}</td>
               <td>{el.destino}</td>
               <td>
-                {/* <button className="button" onClick={() => openModal(product)}>
-                    Edit
-                  </button>{' '} */}
+                <button
+                  className="button"
+                  onClick={() => navigate(`/travel/${el.id}`)}
+                >
+                  Editar
+                </button>{' '}
                 <button className="button" onClick={() => handleDelete(el)}>
                   BORRAR
                 </button>

@@ -3,6 +3,7 @@ import {
   GET_ALL_TRAVELS,
   POST_CLIENT,
   DELETE_TRAVEL,
+  UPDATE_TRAVEL,
 } from '../actions';
 
 const initialState = {
@@ -31,6 +32,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         travel: action.payload,
+      };
+
+    case UPDATE_TRAVEL:
+      return {
+        ...state,
       };
     default:
       return state;

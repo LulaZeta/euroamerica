@@ -3,6 +3,8 @@ export const POST_TRAVEL = 'POST_TRAVEL';
 export const POST_CLIENT = 'POST_CLIENT';
 export const GET_ALL_TRAVELS = 'GET_ALL_TRAVELS';
 export const DELETE_TRAVEL = 'DELETE_TRAVEL';
+export const UPDATE_TRAVEL = 'UPDATE_TRAVEL';
+//export const GET_TRAVEL_BY_ID = 'GET_TRAVEL_BY_ID';
 
 const postClient = (payload) => async (dispach) => {
   try {
@@ -49,4 +51,37 @@ const deleteTravel = (id) => async (dispatch) => {
   }
 };
 
-export { postTravel, postClient, getAllTravels, deleteTravel };
+const updateTravel = (payload) => async (dispatch) => {
+  console.log(payload);
+  try {
+    const response = await axios.put(`/travel/${payload.id}`, payload);
+    return dispatch({
+      type: UPDATE_TRAVEL,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// const getTravelById = (id) => async (dispatch) => {
+//   try {
+//     const response = await axios.get('/travel/' + id);
+//     //console.log(response);
+//     return dispatch({
+//       type: GET_TRAVEL_BY_ID,
+//       payload: response.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+export {
+  postTravel,
+  postClient,
+  getAllTravels,
+  deleteTravel,
+  updateTravel,
+  //getTravelById,
+};
