@@ -81,30 +81,41 @@ router.post('/travel', async (req, res, next) => {
       !destino
     ) {
       return res.status(401).send({ info: 'data incompleta' });
-    }
-
-    const newTravel = await Travel.create({
-      name,
-      lastname,
-      dni,
-      patente,
-      cuit,
-      origen,
-      destino,
-    });
-    return await Client.findAll({
-      where: { cuit: cuit },
-    })
-      .then((el) => {
-        // console.log('el:', el[0]);
-        newTravel.setClient(el[0]);
-        return res.status(201).send(newTravel);
-      })
-
-      .catch((err) => {
-        console.log('err    :', err);
-        res.status(404).send({ info: err });
+    } else {
+      const checkCuit = await Client.findOne({
+        where: {
+          cuit: cuit,
+        },
       });
+      //console.log(checkCuit);
+      if (checkCuit === null) {
+        return res.status(401).send({ info: 'Cliente inexistente' });
+      }
+      {
+        const newTravel = await Travel.create({
+          name,
+          lastname,
+          dni,
+          patente,
+          cuit,
+          origen,
+          destino,
+        });
+        return await Client.findAll({
+          where: { cuit: cuit },
+        })
+          .then((el) => {
+            // console.log('el:', el[0]);
+            newTravel.setClient(el[0]);
+            return res.status(201).send(newTravel);
+          })
+
+          .catch((err) => {
+            console.log('err    :', err);
+            res.status(404).send({ info: err });
+          });
+      }
+    }
 
     // res.status(200).json(newTravel);
   } catch (error) {
@@ -131,13 +142,40 @@ router.delete('/travel/:id', async (req, res, next) => {
 router.put('/travel/:id', async (req, res, next) => {
   const id = req.params.id;
   const travel = req.body; //lo q me pasan por body de las propiedades activities
+
   try {
-    await Travel.update(travel, {
-      where: {
-        id: id,
-      },
-    });
-    return res.json({ modificado: true });
+    if (
+      !travel.name ||
+      !travel.lastname ||
+      !travel.dni ||
+      !travel.patente ||
+      !travel.cuit ||
+      !travel.origen ||
+      !travel.destino
+    ) {
+      return res.status(401).send({ info: 'data incompleta' });
+    } else {
+      const checkCuit = await Client.findOne({
+        where: {
+          cuit: travel.cuit,
+        },
+      });
+      //console.log(checkCuit);
+      if (checkCuit === null) {
+        return res.status(401).send({ info: 'Cliente inexistente' });
+      }
+      {
+        const newTravel = await Travel.update(travel, {
+          where: {
+            id: id,
+          },
+        });
+
+        return res.status(200).send({
+          modificado: true,
+        });
+      }
+    }
   } catch (error) {
     next(error);
   }

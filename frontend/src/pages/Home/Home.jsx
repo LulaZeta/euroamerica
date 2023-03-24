@@ -47,7 +47,7 @@ const Home = () => {
                 <td>{el.lastname}</td>
                 <td>{el.dni}</td>
                 <td>{el.patente}</td>
-                <td>{el.client.client}</td>
+                <td>{el.client?.client}</td>
                 <td>{el.cuit}</td>
                 <td>{el.origen}</td>
                 <td>{el.destino}</td>
